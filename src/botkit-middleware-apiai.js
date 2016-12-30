@@ -60,6 +60,10 @@ module.exports = function(config) {
     };
 
     middleware.action = function(tests, message) {
+        if (!tests) {
+            return true;
+        }
+        
         for (var i = 0; i < tests.length; i++) {
             if (message.nlpResponse.result.action === tests[i] &&
                 message.confidence >= config.minimum_confidence) {
